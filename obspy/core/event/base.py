@@ -19,10 +19,7 @@ This class hierarchy is closely modelled after the de-facto standard format
     GNU Lesser General Public License, Version 3
     (https://www.gnu.org/copyleft/lesser.html)
 """
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-from future.builtins import *  # NOQA
-from future.utils import native_str
+from __future__ import absolute_import, division, print_function
 
 import collections
 import copy
@@ -33,6 +30,7 @@ import weakref
 from copy import deepcopy
 from uuid import uuid4
 
+from obspy.core.compatibility import string_types
 from obspy.core.event.header import DataUsedWaveType, ATTRIBUTE_HAS_ERRORS
 from obspy.core.utcdatetime import UTCDateTime
 from obspy.core.util import AttribDict
@@ -99,7 +97,7 @@ def _bool(value):
     True for any value (including zero) of int and float,
     and for (empty) strings.
     """
-    if value == 0 or isinstance(value, (str, native_str)):
+    if value == 0 or isinstance(value, string_types):
         return True
     return bool(value)
 
@@ -265,8 +263,8 @@ def _event_type_class_factory(class_name, class_attributes=[],
 
             def get_value_repr(key):
                 value = getattr(self, key)
-                if isinstance(value, (str, native_str)):
-                    value = native_str(value)
+                if isinstance(value, string_types):
+                    value = str(value)
                 repr_str = value.__repr__()
                 # Print any associated errors.
                 error_key = key + "_errors"
@@ -388,7 +386,7 @@ def _event_type_class_factory(class_name, class_attributes=[],
         base_class = AbstractEventType
 
     # Set the class type name.
-    setattr(base_class, "__name__", native_str(class_name))
+    setattr(base_class, "__name__", str(class_name))
     return base_class
 
 
@@ -719,7 +717,7 @@ class ResourceIdentifier(object):
     def id(self, value):
         self.fixed = True
         # XXX: no idea why I had to add bytes for PY2 here
-        if not isinstance(value, (str, bytes)):
+        if not isinstance(value, string_types):
             msg = "attribute id needs to be a string."
             raise TypeError(msg)
         self.__dict__["id"] = value
@@ -734,7 +732,7 @@ class ResourceIdentifier(object):
 
     @prefix.setter
     def prefix(self, value):
-        if not isinstance(value, (str, native_str)):
+        if not isinstance(value, string_types):
             msg = "prefix id needs to be a string."
             raise TypeError(msg)
         self._prefix = value
