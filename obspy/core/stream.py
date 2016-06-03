@@ -8,10 +8,7 @@ Module for handling ObsPy Stream objects.
     GNU Lesser General Public License, Version 3
     (https://www.gnu.org/copyleft/lesser.html)
 """
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-from future.builtins import *  # NOQA
-from future.utils import native_str
+from __future__ import absolute_import, division, print_function
 
 import copy
 import fnmatch
@@ -202,7 +199,7 @@ def read(pathname_or_url=None, format=None, headonly=False, starttime=None,
     if pathname_or_url is None:
         # if no pathname or URL specified, return example stream
         st = _create_example_stream(headonly=headonly)
-    elif not isinstance(pathname_or_url, (str, native_str)):
+    elif not isinstance(pathname_or_url, str):
         # not a string - we assume a file-like object
         pathname_or_url.seek(0)
         try:
@@ -252,9 +249,6 @@ def read(pathname_or_url=None, format=None, headonly=False, starttime=None,
         st._rtrim(endtime, nearest_sample=nearest_sample)
     # convert to dtype if given
     if dtype:
-        # For compatibility with NumPy 1.4
-        if isinstance(dtype, str):
-            dtype = native_str(dtype)
         for tr in st:
             tr.data = np.require(tr.data, dtype)
     # applies calibration factor
@@ -2247,7 +2241,7 @@ seismometer_correction_simulation.html#using-a-resp-file>`_.
         BW.RJOB..EHE | 2009-08-24T00:20:03.000000Z ... | 10.0 Hz, 300 samples
         """
         for tr in self:
-            tr.resample(sampling_rate, window=native_str(window),
+            tr.resample(sampling_rate, window=window,
                         no_filter=no_filter, strict_length=strict_length)
         return self
 
@@ -3116,7 +3110,7 @@ def _is_pickle(filename):  # @UnusedVariable
     >>> _is_pickle('/path/to/pickle.file')  # doctest: +SKIP
     True
     """
-    if isinstance(filename, (str, native_str)):
+    if isinstance(filename, str):
         try:
             with open(filename, 'rb') as fp:
                 st = pickle.load(fp)
@@ -3143,7 +3137,7 @@ def _read_pickle(filename, **kwargs):  # @UnusedVariable
     :rtype: :class:`~obspy.core.stream.Stream`
     :return: A ObsPy Stream object.
     """
-    if isinstance(filename, (str, native_str)):
+    if isinstance(filename, str):
         with open(filename, 'rb') as fp:
             return pickle.load(fp)
     else:
@@ -3170,7 +3164,7 @@ def _write_pickle(stream, filename, protocol=2, **kwargs):  # @UnusedVariable
     :type protocol: int, optional
     :param protocol: Pickle protocol, defaults to ``2``.
     """
-    if isinstance(filename, (str, native_str)):
+    if isinstance(filename, str):
         with open(filename, 'wb') as fp:
             pickle.dump(stream, fp, protocol=protocol)
     else:
