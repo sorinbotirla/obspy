@@ -510,9 +510,7 @@ Further functionality of this module is documented at a couple of other places:
 * :class:`~.restrictions.Restrictions` class
 * :class:`~.mass_downloader.MassDownloader` class
 """
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-from future.builtins import *  # NOQA
+from __future__ import absolute_import, division, print_function
 
 # Convenience imports.
 from .mass_downloader import MassDownloader  # NOQA

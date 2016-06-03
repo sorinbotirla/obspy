@@ -24,10 +24,7 @@ A command-line program that indexes seismogram files into a database.
 
        ./obspy-indexer -v -i0.0 --run-once --check-duplicates -n1 -u$DB -d$DATA
 """
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-from future.builtins import *  # NOQA @UnusedWildImport
-from future.utils import native_str
+from __future__ import absolute_import, division, print_function
 from future import standard_library
 
 import logging
