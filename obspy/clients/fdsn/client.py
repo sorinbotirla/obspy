@@ -1049,7 +1049,7 @@ class Client(object):
         # StringIO objects also have __iter__ so check for 'read' as well
         if isinstance(bulk, collections.Iterable) \
                 and not hasattr(bulk, "read") \
-                and not isinstance(bulk, (str, native_str)):
+                and not isinstance(bulk, str):
             tmp = ["%s=%s" % (key, convert_to_string(value))
                    for key, value in arguments.items() if value is not None]
             # empty location codes have to be represented by two dashes
@@ -1065,7 +1065,7 @@ class Client(object):
             # if it has a read method, read data from there
             if hasattr(bulk, "read"):
                 bulk = bulk.read()
-            elif isinstance(bulk, (str, native_str)):
+            elif isinstance(bulk, str):
                 # check if bulk is a local file
                 if "\n" not in bulk and os.path.isfile(bulk):
                     with open(bulk, 'r') as fh:
@@ -1129,7 +1129,7 @@ class Client(object):
             this_type = service_params[key]["type"]
 
             # Try to decode to be able to work with bytes.
-            if this_type is native_str:
+            if this_type is str:
                 try:
                     value = value.decode()
                 except AttributeError:
@@ -1143,7 +1143,7 @@ class Client(object):
                 raise TypeError(msg)
             # Now convert to a string that is accepted by the webservice.
             value = convert_to_string(value)
-            if isinstance(value, (str, native_str)):
+            if isinstance(value, str):
                 if not value and key != "location":
                     continue
             final_parameter_set[key] = value
@@ -1541,7 +1541,7 @@ def convert_to_string(value):
     >>> print(convert_to_string(False))
     false
     """
-    if isinstance(value, (str, native_str)):
+    if isinstance(value, str):
         return value
     # Boolean test must come before integer check!
     elif isinstance(value, bool):
