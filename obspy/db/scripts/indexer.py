@@ -25,7 +25,6 @@ A command-line program that indexes seismogram files into a database.
        ./obspy-indexer -v -i0.0 --run-once --check-duplicates -n1 -u$DB -d$DATA
 """
 from __future__ import absolute_import, division, print_function
-from future import standard_library
 
 import logging
 import multiprocessing
@@ -33,19 +32,22 @@ import select
 import sys
 from argparse import ArgumentParser
 
-with standard_library.hooks():
-    import http.server
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm.session import sessionmaker
 
 from obspy import __version__
+from obspy.core import compatibility
 from obspy.db.db import Base
 from obspy.db.indexer import WaveformFileCrawler, worker
 from obspy.db.util import parse_mapping_data
 
+if compatibility.PY2:
+    from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+else:
+    from from http.server import BaseHTTPRequestHandler, HTTPServer
 
-class MyHandler(http.server.BaseHTTPRequestHandler):
+
+class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):  # noqa
         """
         Respond to a GET request.
@@ -90,7 +92,7 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
         self.wfile.write(out)
 
 
-class WaveformIndexer(http.server.HTTPServer, WaveformFileCrawler):
+class WaveformIndexer(HTTPServer, WaveformFileCrawler):
     """
     A waveform indexer server.
     """

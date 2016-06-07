@@ -20,9 +20,21 @@ except:
     pass
 
 if PY2:
+    import Queue as queue
     from string import maketrans
+
+    from urllib import urlencode
+    from urllib2 import (HTTPRedirectHandler, Request,
+                         HTTPPasswordMgrWithDefaultRealm,
+                         HTTPDigestAuthHandler, build_opener)
 else:
+    import queue
     maketrans = bytes.maketrans
+
+    from urllib.parse import urlencode
+    from urllib.request import (HTTPRedirectHandler, Request,
+                                HTTPPasswordMgrWithDefaultRealm,
+                                HTTPDigestAuthHandler, build_opener)
 
 
 if PY2:

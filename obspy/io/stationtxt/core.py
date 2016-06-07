@@ -10,10 +10,8 @@ Parsing of the text files from the FDSN station web services.
     (https://www.gnu.org/copyleft/lesser.html)
 """
 from __future__ import absolute_import, division, print_function
-from future import standard_library
-with standard_library.hooks():
-    import collections
 
+import collections
 import csv
 import io
 import warnings

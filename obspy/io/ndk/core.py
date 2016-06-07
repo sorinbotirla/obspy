@@ -20,16 +20,19 @@ import traceback
 import uuid
 import warnings
 
-with standard_library.hooks():
-    import itertools
-
 from obspy import UTCDateTime
+from obspy.core import compatibility
 from obspy.core.event import (Axis, Catalog, Comment, CreationInfo, DataUsed,
                               Event, EventDescription, FocalMechanism,
                               Magnitude, MomentTensor, NodalPlane, NodalPlanes,
                               Origin, PrincipalAxes, SourceTimeFunction,
                               Tensor)
 from obspy.geodetics import FlinnEngdahl
+
+if compatibility.PY2:
+    from itertools import izip_longest as zip_longest
+else:
+    from itertools import zip_longest
 
 
 class ObsPyNDKException(Exception):
@@ -181,7 +184,7 @@ def _read_ndk(filename, *args, **kwargs):  # @UnusedVariable
     cat = Catalog(resource_id=_get_resource_id("catalog", str(uuid.uuid4())))
 
     # Loop over 5 lines at once.
-    for _i, lines in enumerate(itertools.zip_longest(*[lines_iter()] * 5)):
+    for _i, lines in enumerate(zip_longest(*[lines_iter()] * 5)):
         if None in lines:
             msg = "Skipped last %i lines. Not a multiple of 5 lines." % (
                 lines.count(None))

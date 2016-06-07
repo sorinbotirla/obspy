@@ -3,21 +3,25 @@
 The obspy-mopad script test suite.
 """
 from __future__ import absolute_import, division, print_function
-from future import standard_library
 
 import io
 import os
 import sys
 import unittest
 from itertools import product
-with standard_library.hooks():
-    from itertools import zip_longest
 
 import numpy as np
 
+from obspy.core import compatibility
 from obspy.core.util.misc import CatchOutput
 from obspy.core.util.testing import ImageComparison, ImageComparisonException
 from obspy.imaging.scripts.mopad import main as obspy_mopad
+
+
+if compatibility.PY2:
+    from itertools import izip_longest as zip_longest
+else:
+    from itertools import zip_longest
 
 
 class MopadTestCase(unittest.TestCase):
