@@ -515,7 +515,7 @@ clibmseed.msr_endtime.restype = C.c_int64
 
 clibmseed.ms_detect.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.int8, ndim=1,
-                           flags=native_str('C_CONTIGUOUS')),
+                           flags='C_CONTIGUOUS'),
     C.c_int]
 clibmseed.ms_detect.restype = C.c_int
 
@@ -524,7 +524,7 @@ clibmseed.msr_decode_steim2.argtypes = [
     C.c_int,
     C.c_int,
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1,
-                           flags=native_str('C_CONTIGUOUS')),
+                           flags='C_CONTIGUOUS'),
     C.c_int, C.c_char_p, C.c_int]
 clibmseed.msr_decode_steim2.restype = C.c_int
 
@@ -533,7 +533,7 @@ clibmseed.msr_decode_steim1.argtypes = [
     C.c_int,
     C.c_int,
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1,
-                           flags=native_str('C_CONTIGUOUS')),
+                           flags='C_CONTIGUOUS'),
     C.c_int, C.c_char_p, C.c_int]
 clibmseed.msr_decode_steim1.restype = C.c_int
 
