@@ -113,7 +113,6 @@ install:
         $BASEMAP
         $PYPROJ
         flake8
-        future
         lxml
         decorator
         sqlalchemy
