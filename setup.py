@@ -93,16 +93,15 @@ KEYWORDS = [
     'NERIES', 'NonLinLoc', 'NLLOC', 'Nordic', 'observatory', 'ORFEUS', 'PDAS',
     'picker', 'processing', 'PQLX', 'Q', 'real time', 'realtime', 'REFTEK',
     'REFTEK130', 'RT-130', 'RESP', 'response file', 'RT', 'SAC', 'sc3ml',
-    'SDS', 'SEED', 'SeedLink', 'SEG-2', 'SEG Y', 'SEISAN', 'SeisHub', 
-    'Seismic Handler', 'seismology', 'seismogram', 'seismograms', 
+    'SDS', 'SEED', 'SeedLink', 'SEG-2', 'SEG Y', 'SEISAN', 'SeisHub',
+    'Seismic Handler', 'seismology', 'seismogram', 'seismograms',
     'shapefile', 'signal', 'slink', 'spectrogram', 'StationXML', 'taper',
-    'taup', 'travel time', 'trigger', 'VERCE', 'WAV', 'waveform', 
+    'taup', 'travel time', 'trigger', 'VERCE', 'WAV', 'waveform',
     'WaveServer', 'WaveServerV', 'WebDC', 'web service', 'Winston',
     'XML-SEED', 'XSEED']
 
 # when bumping to numpy 1.9.0: replace bytes() in io.reftek with np.tobytes()
 INSTALL_REQUIRES = [
-    'future>=0.12.4',
     'numpy>=1.6.1',
     'scipy>=0.9.0',
     'matplotlib>=1.1.0',
