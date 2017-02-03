@@ -68,7 +68,7 @@ class Client(object):
 
     .. rubric:: Example
 
-    >>> from obspy.clients.iris import Client
+    >>> from obspy.clients.iris import Client  # doctest: +VCR
     >>> client = Client()
     >>> result = client.distaz(stalat=1.1, stalon=1.2, evtlat=3.2,
     ...                        evtlon=1.4)
@@ -305,7 +305,7 @@ class Client(object):
 
         .. rubric:: Example
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> from obspy import UTCDateTime
         >>> dt = UTCDateTime("2005-01-01T00:00:00")
         >>> client = Client()
@@ -398,7 +398,7 @@ class Client(object):
 
         .. rubric:: Example
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> from obspy import UTCDateTime
         >>> client = Client()
         >>> dt = UTCDateTime("2010-02-27T06:30:00.000")
@@ -481,7 +481,7 @@ class Client(object):
 
         .. rubric:: Example
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> from obspy import UTCDateTime
         >>> client = Client()
         >>> dt = UTCDateTime("2005-01-01")
@@ -588,7 +588,7 @@ class Client(object):
 
         .. rubric:: Example
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> client = Client()
         >>> result = client.distaz(stalat=1.1, stalon=1.2, evtlat=3.2,
         ...                        evtlon=1.4)
@@ -643,7 +643,7 @@ class Client(object):
 
         .. rubric:: Examples
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> client = Client()
         >>> client.flinnengdahl(lat=-20.5, lon=-100.6, rtype="code")
         683
@@ -766,7 +766,7 @@ class Client(object):
 
         .. rubric:: Example
 
-        >>> from obspy.clients.iris import Client
+        >>> from obspy.clients.iris import Client  # doctest: +VCR
         >>> client = Client()
         >>> result = client.traveltime(evloc=(-36.122,-72.898),
         ...     staloc=[(-33.45,-70.67),(47.61,-122.33),(35.69,139.69)],
@@ -930,7 +930,7 @@ class Client(object):
 
         (1) Returning frequency, amplitude, phase of first point.
 
-            >>> from obspy.clients.iris import Client
+            >>> from obspy.clients.iris import Client  # doctest: +VCR
             >>> client = Client()
             >>> dt = UTCDateTime("2005-01-01")
             >>> data = client.evalresp("IU", "ANMO", "00", "BHZ", dt,
@@ -940,7 +940,7 @@ class Client(object):
 
         (2) Returning amplitude and phase plot.
 
-            >>> from obspy.clients.iris import Client
+            >>> from obspy.clients.iris import Client  # doctest: +VCR
             >>> client = Client()
             >>> dt = UTCDateTime("2005-01-01")
             >>> client.evalresp("IU", "ANMO", "00", "BHZ", dt) # doctest: +SKIP
