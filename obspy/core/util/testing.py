@@ -10,26 +10,26 @@ Testing utilities for ObsPy.
 """
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
+from future.builtins import *  # NOQA
+from future.utils import native_str
 
 import difflib
 import doctest
 import glob
 import inspect
 import io
-from obspy.core.util.base import NamedTemporaryFile, get_matplotlib_version
-from obspy.core.util.misc import MatplotlibBackend
-from obspy.core.util.vcr import vcr
 import os
 import re
 import shutil
 import unittest
 import warnings
 
-from future.builtins import *  # NOQA
-from future.utils import native_str
 from lxml import etree
-
 import numpy as np
+
+from obspy.core.util.base import NamedTemporaryFile, get_matplotlib_version
+from obspy.core.util.misc import MatplotlibBackend
+from obspy.core.util.vcr import vcr
 
 
 MATPLOTLIB_VERSION = get_matplotlib_version()
