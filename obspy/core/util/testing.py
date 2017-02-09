@@ -50,6 +50,7 @@ def runTest(self):
         return vcr(self._runTest)()
     return self._runTest()
 
+
 doctest.DocTestCase._runTest = doctest.DocTestCase.runTest
 doctest.DocTestCase.runTest = runTest
 
