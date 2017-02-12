@@ -851,11 +851,10 @@ class SeedLinkConnection(object):
                             self.state.sendptr = 0
                             self.state.state = SLState.SL_DATA
                         except Exception as e:
-                            msg = "negotiation with remote SeedLink failed: %s"
-                            logger.error(msg % (e))
-                            self.disconnect()
-                            self.state.state = SLState.SL_DOWN
-                            self.state.netdly_trig = -1
+                            self.config_link()
+                            self.state.recptr = 0
+                            self.state.sendptr = 0
+                            self.state.state = SLState.SL_DATA
                         self.state.expect_info = False
 
             # Process data in our buffer and then read incoming data
